@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../models/requests/customer.dart';
 import '../models/requests/customizations.dart';
 import '../models/requests/standard_request.dart';
@@ -45,6 +43,7 @@ class Flutterwave {
 
   /// Starts Standard Transaction
   Future<ChargeResponse> charge() async {
+
     final request = StandardRequest(
         txRef: txRef,
         amount: amount,

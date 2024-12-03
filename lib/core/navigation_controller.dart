@@ -19,7 +19,7 @@ class NavigationController {
   startTransaction(final StandardRequest request) async {
     try {
       final StandardResponse standardResponse =
-      await request.execute(this.client);
+      await request.execute(client);
       if (standardResponse.status == "error") {
         throw (TransactionError(standardResponse.message!));
       }
@@ -38,14 +38,11 @@ class NavigationController {
     final FlutterwaveInAppBrowser browser =
         FlutterwaveInAppBrowser(callBack: _callBack);
 
-    var options = InAppBrowserClassOptions(
-      crossPlatform: InAppBrowserOptions(hideUrlBar: true),
-      inAppWebViewGroupOptions: InAppWebViewGroupOptions(
-        crossPlatform: InAppWebViewOptions(javaScriptEnabled: true),
-      ),
+    var options = InAppBrowserClassSettings(
+    browserSettings: InAppBrowserSettings(allowGoBackWithBackButton: true)
     );
 
     await browser.openUrlRequest(
-        urlRequest: URLRequest(url: WebUri(url)), options: options);
+        urlRequest: URLRequest(url:WebUri(url.toString())), settings: options);
   }
 }

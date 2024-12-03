@@ -46,6 +46,6 @@ class NavigationController {
     );
 
     await browser.openUrlRequest(
-        urlRequest: URLRequest(url: Uri.parse(url)), options: options);
+        urlRequest: URLRequest(url: WebUri(url)), options: options);
   }
 }

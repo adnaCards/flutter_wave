@@ -59,16 +59,24 @@ class Flutterwave {
         meta: meta);
 
 
-
-    return await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PaymentWidget(
-          request: request,
-          style: style ?? FlutterwaveStyle(),
-          mainContext: context,
+    try{
+      return await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PaymentWidget(
+            request: request,
+            style: style ?? FlutterwaveStyle(),
+            mainContext: context,
+          ),
         ),
-      ),
-    );
+      );
+    }catch(e){
+      print(e);
+
+
+      return await Navigator.push(context, MaterialPageRoute(builder: (context)=> Container()));
+    }
+
+
   }
 }

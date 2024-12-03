@@ -35,13 +35,13 @@ class FlutterwaveStyle {
 
   /// Returns button color or default
   Color getButtonColor() {
-    return buttonColor ?? Color(0xFFfff1d0);
+    return buttonColor ?? const Color(0xFFfff1d0);
   }
 
   /// Returns button text style or default
   TextStyle getButtonTextStyle() {
     return buttonTextStyle ??
-        TextStyle(
+        const TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
   }
 

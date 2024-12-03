@@ -65,12 +65,9 @@ class FlutterwaveViewUtils {
       final Widget? progressIndicator,
       final TextStyle? textStyle,
       final Color? dialogBackgroundColor) {
-    final Widget indicator = progressIndicator != null
-        ? progressIndicator
-        : CircularProgressIndicator(backgroundColor: Colors.orangeAccent);
+    final Widget indicator = progressIndicator ?? const CircularProgressIndicator(backgroundColor: Colors.orangeAccent);
 
-    final style =
-        textStyle != null ? textStyle : TextStyle(color: Colors.black);
+    final style = textStyle ?? const TextStyle(color: Colors.black);
 
     return showDialog(
       context: context,
@@ -132,7 +129,7 @@ class FlutterwaveViewUtils {
     Fluttertoast.showToast(
         msg: text,
         timeInSecForIosWeb: 1,
-        backgroundColor: Color(0xAA383737),
+        backgroundColor: const Color(0xAA383737),
         textColor: Colors.white,
     );
   }

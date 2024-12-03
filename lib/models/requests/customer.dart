@@ -8,9 +8,9 @@ class Customer {
   /// Converts instance of Customer to json
   Map<String, dynamic> toJson() {
     return {
-      "email": this.email,
-      "phonenumber": this.phoneNumber,
-      "name": this.name
+      "email": email,
+      "phonenumber": phoneNumber,
+      "name": name
     };
   }
 }

@@ -125,6 +125,6 @@ class _PaymentState extends State<PaymentWidget>
   onTransactionSuccess(String id, String txRef) {
     final ChargeResponse chargeResponse = ChargeResponse(
         status: "success", success: true, transactionId: id, txRef: txRef);
-    Navigator.pop(this.widget.mainContext, chargeResponse);
+    Navigator.pop(widget.mainContext, chargeResponse);
   }
 }

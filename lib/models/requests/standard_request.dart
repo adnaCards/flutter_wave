@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
-
 import '../../utils.dart';
 import '../TransactionError.dart';
 import '../responses/standard_response.dart';
@@ -36,37 +35,38 @@ class StandardRequest {
     this.subAccounts,
     this.meta});
 
-  String toString() => jsonEncode(this._toJson());
+  @override
+  String toString() => jsonEncode(_toJson());
 
 
   /// Converts this instance to json
   Map<String, dynamic> _toJson() {
     return {
-      "tx_ref": this.txRef,
-      "publicKey": this.publicKey,
-      "amount": this.amount,
-      "currency": this.currency,
-      "payment_options": this.paymentOptions,
-      "payment_plan": this.paymentPlanId,
-      "redirect_url": this.redirectUrl,
-      "customer": this.customer.toJson(),
-      "subaccounts": this.subAccounts?.map((e) => e.toJson()).toList(),
-      "meta": this.meta,
+      "tx_ref": txRef,
+      "publicKey": publicKey,
+      "amount": amount,
+      "currency": currency,
+      "payment_options": paymentOptions,
+      "payment_plan": paymentPlanId,
+      "redirect_url": redirectUrl,
+      "customer": customer.toJson(),
+      "subaccounts": subAccounts?.map((e) => e.toJson()).toList(),
+      "meta": meta,
       "customizations": customization.toJson()
     };
   }
 
   /// Executes network call to initiate transactions
   Future<StandardResponse> execute(Client client) async {
-    final url = Utils.getBaseUrl(this.isTestMode) + Utils.STANDARD_PAYMENT;
+    final url = Utils.getBaseUrl(isTestMode) + Utils.STANDARD_PAYMENT;
     final uri = Uri.parse(url);
     try {
       final response = await client.post(uri,
           headers: {
-            HttpHeaders.authorizationHeader: this.publicKey,
+            HttpHeaders.authorizationHeader: publicKey,
             HttpHeaders.contentTypeHeader: 'application/json'
           },
-          body: json.encode(this._toJson()));
+          body: json.encode(_toJson()));
       final responseBody = json.decode(response.body);
       if (responseBody["status"] == "error") {
         throw TransactionError(responseBody["message"] ??
@@ -74,7 +74,7 @@ class StandardRequest {
       }
       return StandardResponse.fromJson(responseBody);
     } catch (error) {
-      throw (error);
+      rethrow;
     }
   }
 }

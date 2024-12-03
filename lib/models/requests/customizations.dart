@@ -8,9 +8,9 @@ class Customization {
   /// Converts instance of Customization to json
   Map<String, dynamic> toJson() {
     return {
-      "title": this.title != null ? this.title : "",
-      "description": this.description != null ? this.description : "",
-      "logo": this.logo != null ? this.logo : ""
+      "title": this.title ?? "",
+      "description": this.description ?? "",
+      "logo": this.logo ?? ""
     };
   }
 }

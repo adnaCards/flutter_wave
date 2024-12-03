@@ -6,17 +6,17 @@ class StandardResponse {
   StandardResponse({this.status, this.data, this.message});
 
   StandardResponse.fromJson(Map<String, dynamic> json) {
-    this.status = json["status"];
-    this.message = json["message"];
-    this.data = StandardResponseData.fromJson(json["data"]);
+    status = json["status"];
+    message = json["message"];
+    data = StandardResponseData.fromJson(json["data"]);
   }
 
   /// Converts this instance to json
   Map<String, dynamic> toJson() {
     return {
-      "status": this.status,
-      "message": this.message,
-      "data": this.data?.toJson()
+      "status": status,
+      "message": message,
+      "data": data?.toJson()
     };
   }
 }
@@ -33,7 +33,7 @@ class StandardResponseData {
   /// Converts this instance to json
   Map<String, dynamic> toJson() {
     return {
-      "link": this.link
+      "link": link
     };
   }
 }
